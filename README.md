@@ -1,3 +1,6 @@
+# Mindset 
+Web App for collecting questionaire data & work session productivity metrics & correlates from KS backers & product testers
+
 [![License: MIT](https://img.shields.io/github/license/vintasoftware/django-react-boilerplate.svg)](LICENSE.txt)
 
 # Django React Boilerplate
@@ -23,29 +26,11 @@ Also, includes a Heroku `app.json` and a working Django `production.py` settings
 
 This is a good starting point for modern Python/JavaScript web projects.
 
-## Project bootstrap [![CircleCI](https://circleci.com/gh/vintasoftware/django-react-boilerplate.svg?style=svg)](https://circleci.com/gh/vintasoftware/django-react-boilerplate)
-- [ ] Start your project using:
-```
-django-admin startproject theprojectname --extension py,yml,json --name Procfile,README.md,.env.example --template=https://github.com/vintasoftware/django-react-boilerplate/archive/boilerplate-release.zip
-```
-- [ ] Above: don't forget the `--extension` and `--name` params!
-- [ ] `pip install -r requirements-to-freeze.txt`
-- [ ] `pip freeze > requirements.txt`
-- [ ] `npm update --save`
-- [ ] `npm update --save-dev`
-- [ ] Remove the `^` from `"bootstrap-loader": "^2.1.0"` in the package.json file. bootstrap-loader 2.2 breaks semver by breaking support for 4.0.0-alpha.6. This step will be removed when we update to bootstrap beta version.
-- [ ] Check for outdated npm dependencies with `npm outdated` and update them
-- [ ] Change the first line of README to the name of the project
-- [ ] Add an email address to the `ADMINS` settings variable
-- [ ] Change the `SERVER_EMAIL` to the email address used to send e-mails.
-
-After completing ALL of the above, remove this `Project bootstrap` section from the project README. Then follow `Running` below.
-
 ## Running
 ### Setup
 - On project root, do the following:
-- Create a copy of ``project_name/settings/local.py.example``:  
-  `cp project_name/settings/local.py.example project_name/settings/local.py`
+- Create a copy of ``mindset_app/settings/local.py.example``:  
+  `cp mindset_app/settings/local.py.example mindset_app/settings/local.py`
 - Create a copy of ``.env.example``:  
   `cp .env.example .env`
 - Create the migrations for `users` app (do this, then remove this line from the README):  

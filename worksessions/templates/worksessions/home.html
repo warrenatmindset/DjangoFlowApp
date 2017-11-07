@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% include 'includes/header.html' %}
+<div id="react-session-app"></div>
+<a href="{% url 'users:profile' user.id %}">Back to profile</a>
+{% include 'users/logout.html' %}
+
+{% load render_bundle from webpack_loader %}
+{% render_bundle 'main' 'js' 'JQUERY' %}
+{% endblock %}

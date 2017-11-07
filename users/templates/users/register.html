@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% include 'includes/header.html' %}
+{% include 'includes/flash_messages.html' %}
+
+<form action="{% url 'users:register' %}" method="post">
+	{% csrf_token %}
+
+	<label>Email</label>
+	<input type="text" name="email" id="register-email" />
+	</br>
+
+	<label>Password</label>
+	<input type="password" name="password" id="register-password" /> 
+	</br>
+
+	<label>Confirm Password</label>
+	<input type="password" name="confirm-password" id="register-confirm-password" />
+	</br>
+
+	<button type="submit">Register</button>
+</form>
+{% endblock %}

@@ -23,7 +23,7 @@ baseConfig[1].output = {
 baseConfig[1].module.loaders.push({
   test: /\.jsx?$/,
   exclude: [nodeModulesDir],
-  loaders: ['babel-loader?presets[]=react,presets[]=es2015']
+  loaders: ['babel-loader?presets[]=react,presets[]=es2015,presets[]=stage-0']
 });
 
 baseConfig[1].plugins = [

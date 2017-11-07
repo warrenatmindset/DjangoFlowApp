@@ -1,3 +1,4 @@
+
 # https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
@@ -24,7 +25,7 @@ ADMINS = (
 
 AUTH_USER_MODEL = 'users.User'
 
-ALLOWED_HOSTS = ['.herokuapp.com', '.mindset_app.herokuapp.com']
+ALLOWED_HOSTS = ['herokuapp.com', 'mindset_app.herokuapp.com', 'django-flow-app.herokuapp.com', 'localhost']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
 
     'common',
     'users',
+    'worksessions',
+    'questionnaires'
 ]
 
 MIDDLEWARE = [

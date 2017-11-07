@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% include 'includes/header.html' %}
+profile of {{ user.email }} 
+</br>
+<a href="{% url 'worksessions:home' %}">Start a work session</a>
+{% include 'users/logout.html' %}
+{% endblock %}

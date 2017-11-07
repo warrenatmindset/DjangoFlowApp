@@ -7,10 +7,18 @@ HOST = 'http://localhost:8000'
 
 SECRET_KEY = 'secret'
 
+DATABASE_NAME = 'mindset_db'
+DATABASE_USER = 'admin'
+DATABASE_PASSWORD = 'admin_pass'
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': base_dir_join('db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': DATABASE_NAME,
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASSWORD,
+        'HOST': '',
+        'PORT': ''
     }
 }
 

@@ -5,11 +5,13 @@ import './style/sessionButtons.css';
 
 const style = {
 	interfaceContainer: {
-		marginTop: '20vh'
+		marginTop: '20vh',
+		textAlign: 'center'
 	},
 	timer: {
 		fontSize: '64px',
-		textAlign: 'center'
+		textAlign: 'center',
+		minWidth: '300px'
 	}
 };
 
@@ -141,5 +143,7 @@ export default class SessionPage extends Component {
 	_sendNotification(){
 		let n = new Notification('Your session is finished! Please fill out your results so we can help you improve.');
 		n.onclick = () => {	window.focus(); };
+		let s = new Audio('./sound_clips/beep.mp3');
+		s.play();
 	}
 }

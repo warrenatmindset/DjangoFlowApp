@@ -9,6 +9,8 @@
 	display: inline-block;
 	padding: 10px 15px;
 	margin: 10px;
+	min-width: 95px;
+	text-align: center;
 	background-color: rgb(116, 196, 173);
 	border-radius: 50px;
 	cursor: pointer;
@@ -26,6 +28,8 @@
 	display: inline-block;
 	padding: 10px 15px;
 	margin: 10px;
+	min-width: 95px;
+	text-align: center;
 	background-color: rgb(116, 196, 173);
 	opacity: 0.5;
 	border-radius: 50px;

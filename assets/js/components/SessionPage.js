@@ -37,7 +37,7 @@ export default class SessionPage extends Component {
 	constructor(props){
 		super(props);
 
-		const SESSION_LENGTH = 2 * 1; // in seconds
+		const SESSION_LENGTH = 25 * 60; // in seconds
 
 		this.state = {
 			time_remaining: SESSION_LENGTH, 

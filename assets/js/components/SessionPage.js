@@ -61,7 +61,7 @@ export default class SessionPage extends Component {
 	render(){
 		return (
 			<div style={style.interfaceContainer}>
-				<div style={style.timer}>{this._timerString()}</div>
+				<div style={style.timer} className='session-timer'>{this._timerString()}</div>
 				<div style={style.mindWanderButton} className='session-button' onClick={ () => { this._recordMindWander() }}>Mind Wander</div>
 				<div style={style.distractionButton} className='session-button' onClick={ () => { this._recordDistraction() }}>Distraction</div>
 			</div>

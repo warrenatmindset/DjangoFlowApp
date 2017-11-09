@@ -10,22 +10,6 @@ const style = {
 	timer: {
 		fontSize: '64px',
 		textAlign: 'center'
-	},
-	mindWanderButton: {
-		display: 'inline-block',
-		padding: '10px 15px',
-		margin: '10px',
-		backgroundColor: 'rgb(116, 196, 173)',
-		borderRadius: '50px',
-		cursor: 'pointer'
-	},
-	distractionButton: {
-		display: 'inline-block',
-		padding: '10px 15px',
-		margin: '10px',
-		backgroundColor: 'rgb(116, 196, 173)',
-		borderRadius: '50px',
-		cursor: 'pointer'
 	}
 };
 
@@ -37,35 +21,56 @@ export default class SessionPage extends Component {
 	constructor(props){
 		super(props);
 
-		const SESSION_LENGTH = 25 * 60; // in seconds
+		this.SESSION_LENGTH = 25 * 60; // in seconds
 
 		this.state = {
-			time_remaining: SESSION_LENGTH, 
+			time_remaining: this.SESSION_LENGTH, 
 			mind_wanders: [],
-			distractions: []
+			distractions: [],
+			timer_ongoing: false,
+			session_begun: false
 		};
 
 		this._endSession = this._endSession.bind(this);
 	}
 
-	componentDidMount(){
-		this.timer = setInterval(() => {
-			this.setState({time_remaining: this.state.time_remaining - 1}, () => {
-				if(this.state.time_remaining == 0)
-					this._endSession();
-			});
-		}, 1000);
-		this.props.setSessionData('start_time', Date.now());
-	}
-
 	render(){
 		return (
 			<div style={style.interfaceContainer}>
+				<div className={this._beginButtonClassName()} onClick={() => { this._beginSession(); }}>Begin</div>
+				<div className={this._pauseAndResetButtonClassNames()} onClick={() => { this._pauseOrResumeSession(); }}>{this._pauseOrResumeString()}</div>
+				<div className={this._pauseAndResetButtonClassNames()} onClick={() => { this._resetSession(); }}>Reset</div>
 				<div style={style.timer} className='session-timer'>{this._timerString()}</div>
-				<div style={style.mindWanderButton} className='session-button' onClick={ () => { this._recordMindWander() }}>Mind Wander</div>
-				<div style={style.distractionButton} className='session-button' onClick={ () => { this._recordDistraction() }}>Distraction</div>
+				<div className='session-button' onClick={ () => { this._recordMindWander() }}>Mind Wander</div>
+				<div className='session-button' onClick={ () => { this._recordDistraction() }}>Distraction</div>
 			</div>
 		);
+	}
+
+	_beginSession(){
+		if (!this.state.timer_ongoing){
+			this.props.setSessionData('start_time', Date.now());
+			this._startTimer();
+		}
+	}
+
+	_resetSession(){
+		this.setState({
+			time_remaining: this.SESSION_LENGTH,
+			timer_ongoing: false,
+			session_begun: false
+		});
+		clearInterval(this.timer);
+	}
+
+	_pauseOrResumeSession(){
+		if (this.state.session_begun){
+			if (!this.state.timer_ongoing){
+				this._startTimer();
+			} else {
+				this._stopTimer();
+			}
+		}
 	}
 
 	_recordMindWander(){
@@ -76,6 +81,45 @@ export default class SessionPage extends Component {
 	_recordDistraction(){
 		let current_time = Date.now();
 		this.setState({ distractions: [...this.state.distractions, current_time] });
+	}
+
+
+	_startTimer(){
+		this.setState({
+			timer_ongoing: true,
+			session_begun: true
+		});
+		this.timer = setInterval(() => {
+			this.setState({time_remaining: this.state.time_remaining - 1}, () => {
+				if(this.state.time_remaining == 0)
+					this._endSession();
+			});
+		}, 1000);
+	}
+
+	_stopTimer(){
+		clearInterval(this.timer);
+		this.setState({timer_ongoing: false});
+	}
+
+	_beginButtonClassName(){
+		if (!this.state.session_begun){
+			return 'session-button';
+		} else {
+			return 'disabled-session-button';
+		}
+	}
+
+	_pauseAndResetButtonClassNames(){
+		if (this.state.session_begun){
+			return 'session-button';
+		} else {
+			return 'disabled-session-button';
+		}
+	}
+
+	_pauseOrResumeString(){
+		return this.state.timer_ongoing ? 'Pause' : 'Resume';
 	}
 
 	_timerString(){
@@ -89,8 +133,13 @@ export default class SessionPage extends Component {
 		this.props.setSessionData('end_time', Date.now());
 		this.props.setSessionData('mind_wanders', this.state.mind_wanders);
 		this.props.setSessionData('distractions', this.state.distractions);
-		clearInterval(this.timer);
-		new Notification('Your session is finished! Please fill out your results so we can help you improve.');
+		this._stopTimer();
+		this._sendNotification();
 		this.context.router.push('/end');
+	}
+
+	_sendNotification(){
+		let n = new Notification('Your session is finished! Please fill out your results so we can help you improve.');
+		n.onclick = () => {	window.focus(); };
 	}
 }

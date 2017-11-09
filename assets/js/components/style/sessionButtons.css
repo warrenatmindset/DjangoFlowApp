@@ -6,6 +6,12 @@
 }
 
 .session-button {
+	display: inline-block;
+	padding: 10px 15px;
+	margin: 10px;
+	background-color: rgb(116, 196, 173);
+	border-radius: 50px;
+	cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -14,4 +20,18 @@
 
 .session-button:active {
 	box-shadow: 0px 0px 1px black;
+}
+
+.disabled-session-button {
+	display: inline-block;
+	padding: 10px 15px;
+	margin: 10px;
+	background-color: rgb(116, 196, 173);
+	opacity: 0.5;
+	border-radius: 50px;
+	cursor: not-allowed;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

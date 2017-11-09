@@ -5,6 +5,17 @@ import SevenPointScale from './partials/SevenPointScale';
 import SevenPointScaleHeader from './partials/SevenPointScaleHeader';
 
 
+const style = {
+	submit: {
+		float: 'right',
+		backgroundColor: 'rgb(116, 196, 173)',
+		margin: '10px 0px',
+		padding: '10px 15px',
+		cursor: 'pointer',
+		borderRadius: '50px'
+	}
+};
+
 export default class SessionEnd extends Component {
 	static contextTypes = {
 		router: PropTypes.object.isRequired
@@ -43,7 +54,7 @@ export default class SessionEnd extends Component {
 		return (
 			<div>
 				<p>Congratulations on finishing a work session!</p>
-				<p>Please fill the following form:</p>
+				<p>Please fill the following form & submit:</p>
 				<SevenPointScaleHeader />
 				<SevenPointScale field='productivity' setValue={this._setProductivity} />
 				<SevenPointScale field='focus' lowValue='shallow' highValue='deep' setValue={this._setFocus} />
@@ -55,7 +66,7 @@ export default class SessionEnd extends Component {
 				<SevenPointScale field='task_familiarity' setValue={this._setTaskFamiliarity} />
 				<SevenPointScale field='arousal' setValue={this._setArousal} />
 				<SevenPointScale field='fatigue_since_start' lowValue='lower' midValue='same' highValue='higher' setValue={this._setFatigue} />
-				<div onClick={this._submitSession}>Submit</div>
+				<div style={style.submit} onClick={this._submitSession}>Submit</div>
 			</div>
 		);
 	}
@@ -69,7 +80,6 @@ export default class SessionEnd extends Component {
 
 		if(valid){
 			this.props.submitSessionData();
-			this.props.setFlashMessage('Succesfully submitted the session!');
 			this.context.router.push('/');
 		} else {
 			alert('Please answer all questions before submitting');

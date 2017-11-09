@@ -12,7 +12,6 @@ export default class SessionApp extends Component {
 
     this._setSessionData = this._setSessionData.bind(this);
     this._submitSessionData = this._submitSessionData.bind(this);
-    this._setFlashMessage = this._setFlashMessage.bind(this);
   }
 
   componentDidMount(){
@@ -29,9 +28,7 @@ export default class SessionApp extends Component {
       <div>
         {this.props.children && React.cloneElement(this.props.children, {
           setSessionData: this._setSessionData,
-          submitSessionData: this._submitSessionData,
-          setFlashMessage: this._setFlashMessage,
-          flash_message: this.state.flash_message
+          submitSessionData: this._submitSessionData
         })}
       </div>
     );
@@ -45,9 +42,5 @@ export default class SessionApp extends Component {
   _submitSessionData(){
     $.post('/sessions/save/', 
       this.state);  
-  }
-
-  _setFlashMessage(message){
-    this.setState({flash_message: message});
   }
 }

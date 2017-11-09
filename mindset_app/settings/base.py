@@ -25,7 +25,7 @@ ADMINS = (
 
 AUTH_USER_MODEL = 'users.User'
 
-ALLOWED_HOSTS = ['herokuapp.com', 'mindset_app.herokuapp.com', 'django-flow-app.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['herokuapp.com', 'mindset_app.herokuapp.com', 'mindset-flow-app.herokuapp.com', 'localhost']
 
 INSTALLED_APPS = [
     'django.contrib.admin',

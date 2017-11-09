@@ -1,2 +1,9 @@
-{% load static %}
-<img src="{% static 'images/logo.png' %}" class='logo'>
+<header class="header">
+	{% load static %}
+	<img src="{% static 'images/logo.png' %}" class='logo'>
+	{% if user.is_authenticated %}
+		{% include 'users/logout.html' %}
+		<a href="{% url 'users:profile' user_id=user.id %}" class="header-button">Profile</a>
+		<a href="{% url 'worksessions:home' %}" class="header-button">Work</a>
+	{% endif %}
+</header>

@@ -10,6 +10,54 @@
 @import "components/all";
 @import "pages/all";
 
+html, body {
+	background-color: rgb(244, 242, 242);
+	display: initial !important;
+	height: 100%;
+}
+
 .logo {
-	height: 100px;
+	max-width: 215px;
+}
+
+.react-app-container {
+	width: fit-content;
+	margin: 0 auto;
+}
+
+.header {
+	display: block;
+	padding: 10px 40px;
+}
+
+.logout-form {
+	display: inline-block;
+	float: right;
+}
+
+.logout-button {
+	border: none;
+	padding: 0 30px;	
+	background: none;
+	cursor: pointer;
+	font-size: 18px;
+	color: rgb(56, 58, 59);
+}
+
+.logout-button:focus {
+	outline: none;
+}
+
+.header-button {
+	float: right;
+	border-right: 1px solid black;
+	padding: 0 30px;
+	color: black;
+	font-size: 18px;
+	color: rgb(56, 58, 59);
+}
+
+.header-button:hover {
+	color: black;
+	text-decoration: none;
 }

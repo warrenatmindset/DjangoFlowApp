@@ -1,6 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './style/sessionButtons.css';
 
+
+const style = {
+	interfaceContainer: {
+		marginTop: '20vh'
+	},
+	timer: {
+		fontSize: '64px',
+		textAlign: 'center'
+	},
+	mindWanderButton: {
+		display: 'inline-block',
+		padding: '10px 15px',
+		margin: '10px',
+		backgroundColor: 'rgb(116, 196, 173)',
+		borderRadius: '50px',
+		cursor: 'pointer'
+	},
+	distractionButton: {
+		display: 'inline-block',
+		padding: '10px 15px',
+		margin: '10px',
+		backgroundColor: 'rgb(116, 196, 173)',
+		borderRadius: '50px',
+		cursor: 'pointer'
+	}
+};
 
 export default class SessionPage extends Component {
 	static contextTypes = {
@@ -33,12 +60,10 @@ export default class SessionPage extends Component {
 
 	render(){
 		return (
-			<div>
-				<div>This is the session page</div>
-				<div>{this._timerString()}</div>
-				<div onClick={ () => { this._recordMindWander() }}>Mind Wander</div>
-				<div onClick={ () => { this._recordDistraction() }}>Distraction</div>
-				<div onClick={ () => { this._skipToEndTask() }}>skip to end of task</div>
+			<div style={style.interfaceContainer}>
+				<div style={style.timer}>{this._timerString()}</div>
+				<div style={style.mindWanderButton} className='session-button' onClick={ () => { this._recordMindWander() }}>Mind Wander</div>
+				<div style={style.distractionButton} className='session-button' onClick={ () => { this._recordDistraction() }}>Distraction</div>
 			</div>
 		);
 	}
@@ -66,14 +91,6 @@ export default class SessionPage extends Component {
 		this.props.setSessionData('distractions', this.state.distractions);
 		clearInterval(this.timer);
 		new Notification('Your session is finished! Please fill out your results so we can help you improve.');
-		this.context.router.push('/end');
-	}
-
-	_skipToEndTask(){
-		this.props.setSessionData('end_time', Date.now());
-		this.props.setSessionData('mind_wanders', this.state.mind_wanders);
-		this.props.setSessionData('distractions', this.state.distractions);
-		clearInterval(this.timer);
 		this.context.router.push('/end');
 	}
 }

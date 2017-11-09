@@ -37,7 +37,7 @@ export default class SessionPage extends Component {
 	constructor(props){
 		super(props);
 
-		const SESSION_LENGTH = 25 * 60; // in seconds
+		const SESSION_LENGTH = 2 * 1; // in seconds
 
 		this.state = {
 			time_remaining: SESSION_LENGTH, 
@@ -51,7 +51,7 @@ export default class SessionPage extends Component {
 	componentDidMount(){
 		this.timer = setInterval(() => {
 			this.setState({time_remaining: this.state.time_remaining - 1}, () => {
-				if(this.state.timeRemaining == 0)
+				if(this.state.time_remaining == 0)
 					this._endSession();
 			});
 		}, 1000);

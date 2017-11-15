@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% include 'includes/header.html' %}
+
+<form action="{% url 'questionnaires:cognitive_error' %}" method="post" class="arce-form">
+	{% csrf_token %}
+	<header class="arce-header">Attention-Related Cognitive Error Scale</header>
+	<section class="arce-questions-header">
+		<span class="arce-header-question-buffer"></span>
+		<span class="arce-radio-header">Never</span>
+		<span class="arce-radio-header">Rarely</span>
+		<span class="arce-radio-header">Sometimes</span>
+		<span class="arce-radio-header">Often</span>
+		<span class="arce-radio-header">Very Often</span>
+	</section>
+	<section class="arce-question-container">
+		<span class="arce-question">I could be experiencing some emotion and not be conscious of it until some time later.</span>
+		<input type='radio' name='q1' value='1' class="arce-radio" required />
+		<input type='radio' name='q1' value='2' class="arce-radio" />
+		<input type='radio' name='q1' value='3' class="arce-radio" />
+		<input type='radio' name='q1' value='4' class="arce-radio" />
+		<input type='radio' name='q1' value='5' class="arce-radio" />
+	</section>
+	<section class="arce-question-container">
+		<span class="arce-question">I break or spill things because of carelessness, not paying attention, or thinking of something else.</span>
+		<input type='radio' name='q2' value='1' class="arce-radio" required />
+		<input type='radio' name='q2' value='2' class="arce-radio" />
+		<input type='radio' name='q2' value='3' class="arce-radio" />
+		<input type='radio' name='q2' value='4' class="arce-radio" />
+		<input type='radio' name='q2' value='5' class="arce-radio" />
+	</section>
+	<section class="arce-question-container">
+		<span class="arce-question">I find it difficult to stay focused on what's happening in the present.</span>
+		<input type='radio' name='q3' value='1' class="arce-radio" required />
+		<input type='radio' name='q3' value='2' class="arce-radio" />
+		<input type='radio' name='q3' value='3' class="arce-radio" />
+		<input type='radio' name='q3' value='4' class="arce-radio" />
+		<input type='radio' name='q3' value='5' class="arce-radio" />
+	</section>
+	<section class="arce-question-container">
+		<span class="arce-question">I tend to walk quickly to where I'm going without paying attention to what I'm experiencing along the way.</span>
+		<input type='radio' name='q4' value='1' class="arce-radio" required />
+		<input type='radio' name='q4' value='2' class="arce-radio" />
+		<input type='radio' name='q4' value='3' class="arce-radio" />
+		<input type='radio' name='q4' value='4' class="arce-radio" />
+		<input type='radio' name='q4' value='5' class="arce-radio" />
+	</section>
+	<section class="arce-question-container">
+		<span class="arce-question">I tend not to notice feelings of physical tension or discoarceort until they really grab my attention.</span>
+		<input type='radio' name='q5' value='1' class="arce-radio" required />
+		<input type='radio' name='q5' value='2' class="arce-radio" />
+		<input type='radio' name='q5' value='3' class="arce-radio" />
+		<input type='radio' name='q5' value='4' class="arce-radio" />
+		<input type='radio' name='q5' value='5' class="arce-radio" />
+	</section>
+	<section class="arce-question-container">
+		<span class="arce-question">I forget a person's name almost as soon as I've been told it for the first time.</span>
+		<input type='radio' name='q6' value='1' class="arce-radio" required />
+		<input type='radio' name='q6' value='2' class="arce-radio" />
+		<input type='radio' name='q6' value='3' class="arce-radio" />
+		<input type='radio' name='q6' value='4' class="arce-radio" />
+		<input type='radio' name='q6' value='5' class="arce-radio" />
+	</section>
+	<section class="arce-question-container">
+		<span class="arce-question">It seems I am "running on automatic," without much awareness of what I'm doing.</span>
+		<input type='radio' name='q7' value='1' class="arce-radio" required />
+		<input type='radio' name='q7' value='2' class="arce-radio" />
+		<input type='radio' name='q7' value='3' class="arce-radio" />
+		<input type='radio' name='q7' value='4' class="arce-radio" />
+		<input type='radio' name='q7' value='5' class="arce-radio" />
+	</section>
+	<section class="arce-question-container">
+		<span class="arce-question">I rush through activities without being really attentive to them.</span>
+		<input type='radio' name='q8' value='1' class="arce-radio" required />
+		<input type='radio' name='q8' value='2' class="arce-radio" />
+		<input type='radio' name='q8' value='3' class="arce-radio" />
+		<input type='radio' name='q8' value='4' class="arce-radio" />
+		<input type='radio' name='q8' value='5' class="arce-radio" />
+	</section>
+	<section class="arce-question-container">
+		<span class="arce-question">I get so focused on the goal I want to achieve that I lose touch with what I'm doing right now to get there.</span>
+		<input type='radio' name='q9' value='1' class="arce-radio" required />
+		<input type='radio' name='q9' value='2' class="arce-radio" />
+		<input type='radio' name='q9' value='3' class="arce-radio" />
+		<input type='radio' name='q9' value='4' class="arce-radio" />
+		<input type='radio' name='q9' value='5' class="arce-radio" />
+	</section>
+	<section class="arce-question-container">
+		<span class="arce-question">I do jobs or tasks automatically, without being aware of what I'm doing</span>
+		<input type='radio' name='q10' value='1' class="arce-radio" required />
+		<input type='radio' name='q10' value='2' class="arce-radio" />
+		<input type='radio' name='q10' value='3' class="arce-radio" />
+		<input type='radio' name='q10' value='4' class="arce-radio" />
+		<input type='radio' name='q10' value='5' class="arce-radio" />
+	</section>
+	<section class="arce-question-container">
+		<span class="arce-question">I find myself listening to someone with one ear, doing something else at the same time.</span>
+		<input type='radio' name='q11' value='1' class="arce-radio" required />
+		<input type='radio' name='q11' value='2' class="arce-radio" />
+		<input type='radio' name='q11' value='3' class="arce-radio" />
+		<input type='radio' name='q11' value='4' class="arce-radio" />
+		<input type='radio' name='q11' value='5' class="arce-radio" />
+	</section>
+	<section class="arce-question-container">
+		<span class="arce-question">I drive places on 'automatic pilot' and then wonder why I went there.</span>
+		<input type='radio' name='q12' value='1' class="arce-radio" required />
+		<input type='radio' name='q12' value='2' class="arce-radio" />
+		<input type='radio' name='q12' value='3' class="arce-radio" />
+		<input type='radio' name='q12' value='4' class="arce-radio" />
+		<input type='radio' name='q12' value='5' class="arce-radio" />
+	</section>
+	<button type="submit" class="arce-submit-button">Submit</button> 
+</form>
+{% endblock %}

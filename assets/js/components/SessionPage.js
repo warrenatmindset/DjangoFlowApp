@@ -45,6 +45,7 @@ export default class SessionPage extends Component {
 				<div style={style.timer} className='session-timer'>{this._timerString()}</div>
 				<div className='session-button' onClick={ () => { this._recordMindWander() }}>Mind Wander</div>
 				<div className='session-button' onClick={ () => { this._recordDistraction() }}>Distraction</div>
+				<div onClick={ () => { this._skipToEnd(); }}>Skip to end</div>
 			</div>
 		);
 	}
@@ -141,9 +142,16 @@ export default class SessionPage extends Component {
 	}
 
 	_sendNotification(){
-		let n = new Notification('Your session is finished! Please fill out your results so we can help you improve.');
+		let n = new Notification('Session finished!', {
+			icon: '/static/images/logobadge.png',
+			body: 'Sit back & relax'
+		});
 		n.onclick = () => {	window.focus(); };
-		let s = new Audio('./sound_clips/beep.mp3');
-		s.play();
+		// let s = new Audio('./sound_clips/beep.mp3');
+		// s.play();
+	}
+
+	_skipToEnd(){
+		this.context.router.push('/end');
 	}
 }

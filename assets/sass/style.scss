@@ -61,3 +61,173 @@ html, body {
 	color: black;
 	text-decoration: none;
 }
+
+.maa-form {
+	width: fit-content;
+	margin: 0 auto;
+	padding: 10px 5px;
+	border: 1px solid black;
+	overflow: auto;
+}
+
+.maa-header {
+	margin-bottom: 20px;
+	text-align: center;
+	text-decoration: underline;
+	font-size: 140%;
+}
+
+.maa-questions-header {
+	margin: 20px 0;
+}
+
+.maa-header-question-buffer {
+	display: inline-block;
+	width: 500px;
+}
+
+.maa-radio-header {
+	display: inline-block;
+	width: 100px;
+	margin: 0 0px;
+	text-align: center;
+}
+
+.maa-question-container {
+	margin: 20px 0;
+}
+
+.maa-question {
+	display: inline-block;
+	width: 500px;
+}
+
+.maa-radio {
+	display: inline-block;
+	margin: 0 44px;
+	text-align: center;
+}
+
+.maa-submit-button {
+	display: inline-block;
+	float: right;
+	background-color: rgb(116, 196, 173);
+	min-width: 95px;
+	padding: 10px 15px;
+	margin: 10px;
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+	text-align: center;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &:active {
+		box-shadow: 0px 0px 1px black;
+    }
+
+    &:focus {
+    	outline: none;
+    }
+}
+
+.arce-form {
+	@extend .maa-form;
+}
+
+.arce-header {
+	@extend .maa-header;
+}
+
+.arce-questions-header {
+	@extend .maa-questions-header;
+}
+
+.arce-header-question-buffer {
+	@extend .maa-header-question-buffer;
+}
+
+.arce-radio-header {
+	@extend .maa-radio-header;
+}
+
+.arce-question-container {
+	@extend .maa-question-container;
+}
+
+.arce-question {
+	@extend .maa-question;
+}
+
+.arce-radio {
+	@extend .maa-radio;
+}
+
+.arce-submit-button {
+	@extend .maa-submit-button;
+}
+
+.df-form {
+	@extend .maa-form;
+}
+
+.df-header {
+	@extend .maa-header;
+}
+
+.df-question-container {
+	margin: 30px 5px;
+}
+
+.df-question {
+	width: 800px;
+}
+
+.df-radio-container {
+	margin-left: 20px;
+}
+
+.df-submit-button {
+	@extend .arce-submit-button;
+}
+
+.mf-form {
+	@extend .maa-form;
+}
+
+.mf-header {
+	@extend .maa-header;
+}
+
+.mf-question-container {
+	width: 900px;
+	margin: 30px 5px;
+}
+
+.mf-question-name {
+	font-weight: bolder;
+}
+
+.mf-question {
+
+}
+
+.mf-radio-container {
+	@extend .df-radio-container;
+}
+
+.mf-radio-value {
+	display: inline-block;
+	width: 25px;
+}
+
+.mf-radio {
+
+}
+
+.mf-submit-button {
+	@extend .arce-submit-button;
+}

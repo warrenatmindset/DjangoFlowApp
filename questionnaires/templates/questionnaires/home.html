@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 
 {% block body %}
-{% include 'includes/flash_messages.html' %}
-this is the questionnaires home
-{% include 'users/logout.html' %}
+{% include 'includes/header.html' %}
+
+{% if user.has_answered_questionnaires %}
+	You have already answered the questionnaires
+{% else %}
+	<a href="{% url 'questionnaires:mental_fatigue' %}">Mental Fatigue Scale</a>
+	<br/>
+	<a href="{% url 'questionnaires:cognitive_error' %}">Attention-Related Cognitive Error Scale</a>
+	<br/>
+	<a href="{% url 'questionnaires:daydream' %}">Daydream Frequency Scale</a>
+	<br/>
+	<a href="{% url 'questionnaires:mindful' %}">Mindful Attention Awareness Scale</a>
+{% endif %}
 {% endblock %}

@@ -31,16 +31,12 @@ def register(request):
 		return post_registration_attempt_and_redirect(request)
 
 @login_required
-def profile(request, user_id):
-	user_id = int(user_id)
-	if request.user.id != user_id:
-		return HttpResponseRedirect('/profile/{}'.format(request.user.id))
-	else:	
-		return render(request, 'users/profile.html', {'user': request.user})
+def profile(request):
+	return render(request, 'users/profile.html', {'user': request.user})
 
 def get_login_or_redirect_profile(request):
 	if request.user.is_authenticated:
-		return HttpResponseRedirect('/profile/{}'.format(request.user.id))
+		return HttpResponseRedirect('/profile')
 	else:
 		return render(request, 'users/login.html')
 
@@ -50,7 +46,7 @@ def post_login_attempt_and_redirect(request):
 	user = authenticate(request, username=email, password=password)
 	if user is not None: 
 		auth_login(request, user)
-		return HttpResponseRedirect('/profile/{}'.format(user.id))
+		return HttpResponseRedirect('/profile/')
 	else:
 		messages.error(request, 'Incorrect email/password combination. Try again.')
 		return HttpResponseRedirect(reverse('users:login'))
@@ -94,4 +90,4 @@ def post_registration_attempt_and_redirect(request):
 	if error: 
 		return HttpResponseRedirect(reverse('users:register'))
 	else:
-		return HttpResponseRedirect('/profile/{}'.format(user.id))
+		return HttpResponseRedirect('/profile/')

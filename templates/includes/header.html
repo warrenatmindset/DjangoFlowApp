@@ -1,9 +1,10 @@
-<header class="header">
+<nav class="header">
 	{% load static %}
 	<img src="{% static 'images/logo.png' %}" class='logo'>
 	{% if user.is_authenticated %}
 		{% include 'users/logout.html' %}
-		<a href="{% url 'users:profile' user_id=user.id %}" class="header-button">Profile</a>
+		<a href="{% url 'users:profile' %}" class="header-button">Profile</a>
+		<a href="{% url 'questionnaires:home' %}" class="header-button">Questionnaires</a>
 		<a href="{% url 'worksessions:home' %}" class="header-button">Work</a>
 	{% endif %}
-</header>
+</nav>

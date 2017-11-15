@@ -35,7 +35,6 @@ export default class SessionApp extends Component {
   }
 
   _setSessionData(field_name, field_data){
-    console.log({[field_name]: field_data});
     this.setState({[field_name]: field_data});
   }
 

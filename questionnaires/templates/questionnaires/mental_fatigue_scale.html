@@ -1,0 +1,430 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% include 'includes/header.html' %}
+<form action="{% url 'questionnaires:mental_fatigue' %}" method="post" class="mf-form">
+	{% csrf_token %}
+	<header class="mf-header">Mental Fatigue Scale</header>
+	<section class="mf-question-container">
+		<header class="mf-question-name">1. Fatigue</header>
+		<p class="mf-question">Have you felt fatigued during the past month? It does not matter if the fatigue is physical (muscular) or mental. If you recently experienced something unusual (for example an accident or short illness) you should try to disregard it when assessing your fatigue.</p>
+		<div class="mf-radio-container">
+			<span class="mf-radio-value">0</span>
+			<input type="radio" name="q1" value="0" class="mf-radio" required />
+			<span>I do not feel fatigued at all. (No abnormal fatigue, do not need to rest more than usual).</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">0.5</span>
+			<input type="radio" name="q1" value="0.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1</span>
+			<input type="radio" name="q1" value="1" class="mf-radio" required />
+			<span>I feel fatigued several times every day but I feel more alert after a rest.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1.5</span>
+			<input type="radio" name="q1" value="1.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2</span>
+			<input type="radio" name="q1" value="2" class="mf-radio" required />
+			<span>I feel fatigued for most of the day and taking a rest has little or no effect.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2.5</span>
+			<input type="radio" name="q1" value="2.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">3</span>
+			<input type="radio" name="q1" value="3" class="mf-radio" required />
+			<span>I feel fatigued all the time and taking a rest makes no difference.</span>
+		</div>
+	</section>
+	<section class="mf-question-container">
+		<header class="mf-question-name">2. Lack of initiative</header>
+		<p class="mf-question">Do you find it difficult to start things? Do you experience resistance or a lack of initiative when you have to start something, no matter whether it is a new task or part of your everyday activities?</p>
+		<div class="mf-radio-container">
+			<span class="mf-radio-value">0</span>
+			<input type="radio" name="q2" value="0" class="mf-radio" required />
+			<span>I have no difficulty starting things.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">0.5</span>
+			<input type="radio" name="q2" value="0.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1</span>
+			<input type="radio" name="q2" value="1" class="mf-radio" required />
+			<span>I find it more difficult starting things than I used to. I’d rather do it some other time.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1.5</span>
+			<input type="radio" name="q2" value="1.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2</span>
+			<input type="radio" name="q2" value="2" class="mf-radio" required />
+			<span>It takes a great effort to start things. This applies to everyday activities such as getting out of bed, washing my self and eating.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2.5</span>
+			<input type="radio" name="q2" value="2.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">3</span>
+			<input type="radio" name="q2" value="3" class="mf-radio" required />
+			<span>I can’t do the simplest of everyday tasks (eating, getting dressed). I need help with everything.</span>
+		</div>
+	</section>
+	<section class="mf-question-container">
+		<header class="mf-question-name">3. Mental fatigue</header>
+		<p class="mf-question">Does your brain become fatigued quickly when you have to think hard? Do you become mentally fatigued from things such as reading, watching TV or taking part in a conversation with several people? Do you have to take breaks or change to another activity?</p>
+		<div class="mf-radio-container">
+			<span class="mf-radio-value">0</span>
+			<input type="radio" name="q3" value="0" class="mf-radio" required />
+			<span>I can manage in the same way as usual. My ability for sustained mental effort is not reduced.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">0.5</span>
+			<input type="radio" name="q3" value="0.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1</span>
+			<input type="radio" name="q3" value="1" class="mf-radio" required />
+			<span>I become fatigued quickly but am still able to make the same mental effort as before.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1.5</span>
+			<input type="radio" name="q3" value="1.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2</span>
+			<input type="radio" name="q3" value="2" class="mf-radio" required />
+			<span>I become fatigued quickly and have to take a break or do something else more often than before.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2.5</span>
+			<input type="radio" name="q3" value="2.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">3</span>
+			<input type="radio" name="q3" value="3" class="mf-radio" required />
+			<span>I become fatigued so quickly that I can do nothing or have to abandon everything after a short period (approx. five minutes).</span>
+		</div>
+	</section>
+	<section class="mf-question-container">
+		<header class="mf-question-name">4. Mental recovery</header>
+		<p class="mf-question">How long do you need to recover after you have worked “until you drop” or are no longer able to concentrate on what you are doing?</p>
+		<div class="mf-radio-container">
+			<span class="mf-radio-value">0</span>
+			<input type="radio" name="q4" value="0" class="mf-radio" required />
+			<span>I need to rest for less than an hour before continuing whatever I am doing.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">0.5</span>
+			<input type="radio" name="q4" value="0.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1</span>
+			<input type="radio" name="q4" value="1" class="mf-radio" required />
+			<span>I need to rest for more than an hour but do not require a night’s sleep.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1.5</span>
+			<input type="radio" name="q4" value="1.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2</span>
+			<input type="radio" name="q4" value="2" class="mf-radio" required />
+			<span>I need a night’s sleep before I can continue whatever I am doing.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2.5</span>
+			<input type="radio" name="q4" value="2.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">3</span>
+			<input type="radio" name="q4" value="3" class="mf-radio" required />
+			<span>I need several days rest in order to recover.</span>
+		</div>
+	</section>
+	<section class="mf-question-container">
+		<header class="mf-question-name">5. Concentration difficulties</header>
+		<p class="mf-question">Do you find it difficult to gather your thoughts and concentrate?</p>
+		<div class="mf-radio-container">
+			<span class="mf-radio-value">0</span>
+			<input type="radio" name="q5" value="0" class="mf-radio" required />
+			<span>I can concentrate as usual.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">0.5</span>
+			<input type="radio" name="q5" value="0.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1</span>
+			<input type="radio" name="q5" value="1" class="mf-radio" required />
+			<span>I sometimes lose concentration, for example when reading or watching TV.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1.5</span>
+			<input type="radio" name="q5" value="1.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2</span>
+			<input type="radio" name="q5" value="2" class="mf-radio" required />
+			<span>I find it so difficult to concentrate that I have problems, for example reading a newspaper or taking part in a conversation with a group of people.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2.5</span>
+			<input type="radio" name="q5" value="2.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">3</span>
+			<input type="radio" name="q5" value="3" class="mf-radio" required />
+			<span>I always have such difficulty concentrating that it is almost impossible to do anything.</span>
+		</div>
+	</section>
+	<section class="mf-question-container">
+		<header class="mf-question-name">6. Memory problems</header>
+		<p class="mf-question">Do you forget things more often than before, do you need to make notes or do you have to search for things at home or at work?</p>
+		<div class="mf-radio-container">
+			<span class="mf-radio-value">0</span>
+			<input type="radio" name="q6" value="0" class="mf-radio" required />
+			<span>I have no memory problems.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">0.5</span>
+			<input type="radio" name="q6" value="0.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1</span>
+			<input type="radio" name="q6" value="1" class="mf-radio" required />
+			<span>I forget things slightly more often than I should, but I am able to manage by making notes.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1.5</span>
+			<input type="radio" name="q6" value="1.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2</span>
+			<input type="radio" name="q6" value="2" class="mf-radio" required />
+			<span>My poor memory causes frequent problems (for example forgetting important meetings or turning off the cooker).</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2.5</span>
+			<input type="radio" name="q6" value="2.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">3</span>
+			<input type="radio" name="q6" value="3" class="mf-radio" required />
+			<span>I can hardly remember anything at all.</span>
+		</div>
+	</section>
+	<section class="mf-question-container">
+		<header class="mf-question-name">7. Slowness of thinking</header>
+		<p class="mf-question">Do you feel slow or sluggish when you think about something? Do you feel that it takes an unusually long time to conclude a train of thought or solve a task that requires mental effort?</p>
+		<div class="mf-radio-container">
+			<span class="mf-radio-value">0</span>
+			<input type="radio" name="q7" value="0" class="mf-radio" required />
+			<span>My thoughts are neither slow nor sluggish when it comes to work involving mental effort.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">0.5</span>
+			<input type="radio" name="q7" value="0.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1</span>
+			<input type="radio" name="q7" value="1" class="mf-radio" required />
+			<span>My thoughts are a bit slow one or a few times each day when I have to do something that requires serious mental effort.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1.5</span>
+			<input type="radio" name="q7" value="1.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2</span>
+			<input type="radio" name="q7" value="2" class="mf-radio" required />
+			<span>My thoughts often feel slow and sluggish, even when carrying out everyday activities, for example a conversation with a person or when reading the newspaper.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2.5</span>
+			<input type="radio" name="q7" value="2.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">3</span>
+			<input type="radio" name="q7" value="3" class="mf-radio" required />
+			<span>My thoughts always feel very slow and sluggish.</span>
+		</div>
+	</section>
+	<section class="mf-question-container">
+		<header class="mf-question-name">8. Sensitivity to stress</header>
+		<p class="mf-question">Do you find it difficult to cope with stress that is, doing several things at the same time while under time pressure?</p>
+		<div class="mf-radio-container">
+			<span class="mf-radio-value">0</span>
+			<input type="radio" name="q8" value="0" class="mf-radio" required />
+			<span>I am able to cope with stress, in the same way as usual.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">0.5</span>
+			<input type="radio" name="q8" value="0.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1</span>
+			<input type="radio" name="q8" value="1" class="mf-radio" required />
+			<span>I become more easily stressed, but only in demanding situations that I was previously able to manage.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1.5</span>
+			<input type="radio" name="q8" value="1.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2</span>
+			<input type="radio" name="q8" value="2" class="mf-radio" required />
+			<span>I become stressed more easily than before. I feel stressed in situations that previously did not bother me.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2.5</span>
+			<input type="radio" name="q8" value="2.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">3</span>
+			<input type="radio" name="q8" value="3" class="mf-radio" required />
+			<span>I become stressed very easily. I feel stressed in unfamiliar or trying situations.</span>
+		</div>
+	</section>
+	<section class="mf-question-container">
+		<header class="mf-question-name">9. Increased tendency to become emotional</header>
+		<p class="mf-question">Do you find that you cry more easily than previously? Do you often burst into tears when, for example, you watch a sad film or talk with your family members? If you recently experienced something unusual (for example an accident or short illness) you should try to disregard it in your assessment.</p>
+		<div class="mf-radio-container">
+			<span class="mf-radio-value">0</span>
+			<input type="radio" name="q9" value="0" class="mf-radio" required />
+			<span>I am not more emotional than I used to be.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">0.5</span>
+			<input type="radio" name="q9" value="0.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1</span>
+			<input type="radio" name="q9" value="1" class="mf-radio" required />
+			<span>I am more emotional than other people but it is something that is natural for me. I start to cry or my eyes fill with tears easily, but only in relation to things that affect me deeply.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1.5</span>
+			<input type="radio" name="q9" value="1.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2</span>
+			<input type="radio" name="q9" value="2" class="mf-radio" required />
+			<span>My emotions are problematic or embarrassing. I sometimes even start to cry about things that mean nothing to me. I try to avoid certain situations because of this.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2.5</span>
+			<input type="radio" name="q9" value="2.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">3</span>
+			<input type="radio" name="q9" value="3" class="mf-radio" required />
+			<span>My emotions cause me great problems. They disturb my day-to-day relationship with members of my immediate family and make it difficult for me to cope outside the home.</span>
+		</div>
+	</section>
+	<section class="mf-question-container">
+		<header class="mf-question-name">10. Irritability or "a short fuse"</header>
+		<p class="mf-question">Are you unusually short-tempered or irritable about things that previously did not bother you?</p>
+		<div class="mf-radio-container">
+			<span class="mf-radio-value">0</span>
+			<input type="radio" name="q10" value="0" class="mf-radio" required />
+			<span>I am not more short-tempered or irritable than I used to be.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">0.5</span>
+			<input type="radio" name="q10" value="0.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1</span>
+			<input type="radio" name="q10" value="1" class="mf-radio" required />
+			<span>I become more easily irritated, but it does not last very long.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1.5</span>
+			<input type="radio" name="q10" value="1.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2</span>
+			<input type="radio" name="q10" value="2" class="mf-radio" required />
+			<span>I become irritated very quickly about small things or things that do not bother other people.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2.5</span>
+			<input type="radio" name="q10" value="2.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">3</span>
+			<input type="radio" name="q10" value="3" class="mf-radio" required />
+			<span>I react with extreme anger or rage, which I find very difficult to control.</span>
+		</div>
+	</section>
+	<section class="mf-question-container">
+		<header class="mf-question-name">11. Sensitivity to light</header>
+		<p class="mf-question">Are you sensitive to strong light?</p>
+		<div class="mf-radio-container">
+			<span class="mf-radio-value">0</span>
+			<input type="radio" name="q11" value="0" class="mf-radio" required />
+			<span>I have no increased sensitivity to light.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">0.5</span>
+			<input type="radio" name="q11" value="0.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1</span>
+			<input type="radio" name="q11" value="1" class="mf-radio" required />
+			<span>I sometimes experience problems with strong light such as sunlight reflected by snow, water or glass, or strong lights at home, but I am able to cope with it, for example by wearing sunglasses.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1.5</span>
+			<input type="radio" name="q11" value="1.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2</span>
+			<input type="radio" name="q11" value="2" class="mf-radio" required />
+			<span>I am so sensitive to light that I prefer to carry out my daily activities in dim light. I find it difficult to leave the house without sunglasses.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2.5</span>
+			<input type="radio" name="q11" value="2.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">3</span>
+			<input type="radio" name="q11" value="3" class="mf-radio" required />
+			<span>My sensitivity to light is so strong that I am unable to leave the house without sunglasses. I keep the blinds (or equivalent) drawn at all times.</span>
+		</div>
+	</section>
+	<section class="mf-question-container">
+		<header class="mf-question-name">12. Sensitivity to noise</header>
+		<p class="mf-question">Are you sensitive to noise?</p>
+		<div class="mf-radio-container">
+			<span class="mf-radio-value">0</span>
+			<input type="radio" name="q12" value="0" class="mf-radio" required />
+			<span>I do not suffer from increased sensitivity to noise.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">0.5</span>
+			<input type="radio" name="q12" value="0.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1</span>
+			<input type="radio" name="q12" value="1" class="mf-radio" required />
+			<span>I sometimes have difficulty with loud noise (for example music, noise from the TV or radio or sudden, unexpected sounds), but I can deal with it easily by turning down the volume. My sensitivity to noise does not disturb my everyday life.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1.5</span>
+			<input type="radio" name="q12" value="1.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2</span>
+			<input type="radio" name="q12" value="2" class="mf-radio" required />
+			<span>I have a marked over-sensitivity to noise. I have to avoid loud noise or reduce it (for example by means of ear plugs) in order to cope with everyday life.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2.5</span>
+			<input type="radio" name="q12" value="2.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">3</span>
+			<input type="radio" name="q12" value="3" class="mf-radio" required />
+			<span>My sensitivity to noise is so great that I find it difficult to manage at home despite sound insulation.</span>
+		</div>
+	</section>
+	<section class="mf-question-container">
+		<header class="mf-question-name">13. Decreased sleep at night</header>
+		<p class="mf-question">Do you sleep badly at night? If you are sleeping more than before at night, please place a circle around the "0". If you are taking sleeping tablets and sleep normally, please place a circle around the "0".</p>
+		<div class="mf-radio-container">
+			<span class="mf-radio-value">0</span>
+			<input type="radio" name="q13" value="0" class="mf-radio" required />
+			<span>I do not sleep less than before.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">0.5</span>
+			<input type="radio" name="q13" value="0.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1</span>
+			<input type="radio" name="q13" value="1" class="mf-radio" required />
+			<span>I have slight problems falling asleep or my sleep is shorter, lighter or more restless than before.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1.5</span>
+			<input type="radio" name="q13" value="1.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2</span>
+			<input type="radio" name="q13" value="2" class="mf-radio" required />
+			<span>I sleep at least two hours less than before and wake up frequently during the night without anything disturbing me.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2.5</span>
+			<input type="radio" name="q13" value="2.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">3</span>
+			<input type="radio" name="q13" value="3" class="mf-radio" required />
+			<span>I sleep less than two to three hours per night.</span>
+		</div>
+	</section>
+	<section class="mf-question-container">
+		<header class="mf-question-name">14. Increased sleep</header>
+		<p class="mf-question">Do you sleep longer and/or more deeply than before? If you are sleeping less than before, please place a circle around the "0". N.B. Please take account of time spent sleeping during the day.</p>
+		<div class="mf-radio-container">
+			<span class="mf-radio-value">0</span>
+			<input type="radio" name="q14" value="0" class="mf-radio" required />
+			<span>I do not sleep more than usual.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">0.5</span>
+			<input type="radio" name="q14" value="0.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1</span>
+			<input type="radio" name="q14" value="1" class="mf-radio" required />
+			<span>I sleep longer or deeper, but less than two hours more than usual, including naps during the day.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">1.5</span>
+			<input type="radio" name="q14" value="1.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2</span>
+			<input type="radio" name="q14" value="2" class="mf-radio" required />
+			<span>I sleep longer or deeper. At least two hours more than usual, including naps.</span>
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">2.5</span>
+			<input type="radio" name="q14" value="2.5" class="mf-radio" />
+		</div><div class="mf-radio-container">
+			<span class="mf-radio-value">3</span>
+			<input type="radio" name="q14" value="3" class="mf-radio" required />
+			<span>I sleep longer or deeper. At least four hours more than usual, and in addition I need to take a nap during the day.</span>
+		</div>
+	</section>
+	<button type="submit" class="mf-submit-button">Submit</button> 
+</form>
+{% endblock %}

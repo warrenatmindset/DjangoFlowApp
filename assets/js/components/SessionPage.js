@@ -27,8 +27,7 @@ export default class SessionPage extends Component {
 
 		this.state = {
 			time_remaining: this.SESSION_LENGTH, 
-			mind_wanders: [],
-			distractions: [],
+			returns_to_work: [],
 			timer_ongoing: false,
 			session_begun: false
 		};
@@ -43,9 +42,7 @@ export default class SessionPage extends Component {
 				<div className={this._pauseAndResetButtonClassNames()} onClick={() => { this._pauseOrResumeSession(); }}>{this._pauseOrResumeString()}</div>
 				<div className={this._pauseAndResetButtonClassNames()} onClick={() => { this._resetSession(); }}>Reset</div>
 				<div style={style.timer} className='session-timer'>{this._timerString()}</div>
-				<div className='session-button' onClick={ () => { this._recordMindWander() }}>Mind Wander</div>
-				<div className='session-button' onClick={ () => { this._recordDistraction() }}>Distraction</div>
-				<div onClick={ () => { this._skipToEnd(); }}>Skip to end</div>
+				<div className='session-button' onClick={ () => { this._recordReturnToWork() }}>Return To Work</div>
 			</div>
 		);
 	}
@@ -76,16 +73,10 @@ export default class SessionPage extends Component {
 		}
 	}
 
-	_recordMindWander(){
+	_recordReturnToWork(){
 		let current_time = Date.now();
-		this.setState({ mind_wanders: [...this.state.mind_wanders, current_time] });
+		this.setState({ returns_to_work: [...this.state.returns_to_work, current_time] });
 	}
-
-	_recordDistraction(){
-		let current_time = Date.now();
-		this.setState({ distractions: [...this.state.distractions, current_time] });
-	}
-
 
 	_startTimer(){
 		this.setState({
@@ -134,8 +125,7 @@ export default class SessionPage extends Component {
 
 	_endSession(){
 		this.props.setSessionData('end_time', Date.now());
-		this.props.setSessionData('mind_wanders', this.state.mind_wanders);
-		this.props.setSessionData('distractions', this.state.distractions);
+		this.props.setSessionData('returns_to_work', this.state.returns_to_work);
 		this._stopTimer();
 		this._sendNotification();
 		this.context.router.push('/end');
@@ -149,9 +139,5 @@ export default class SessionPage extends Component {
 		n.onclick = () => {	window.focus(); };
 		// let s = new Audio('./sound_clips/beep.mp3');
 		// s.play();
-	}
-
-	_skipToEnd(){
-		this.context.router.push('/end');
 	}
 }

@@ -19,35 +19,27 @@ def session(request):
 def save_session_data(request):
 	start_time = request.POST['start_time']
 	end_time = request.POST['end_time']
-	mind_wanders = request.POST.getlist('mind_wanders[]')
-	distractions = request.POST.getlist('distractions[]')
+	returns_to_work = request.POST.getlist('returns_to_work[]')
 	productivity = request.POST['productivity']
 	focus = request.POST['focus']
-	task_importance = request.POST['task_importance']
 	satisfaction = request.POST['satisfaction']
-	mood = request.POST['mood']
+	calm = request.POST['calm']
 	task_urgency = request.POST['task_urgency']
-	task_complexity = request.POST['task_complexity']
 	task_familiarity = request.POST['task_familiarity']
 	arousal = request.POST['arousal']
-	fatigue = request.POST['fatigue']
 
 	WorkSession.objects.create(
 		user=request.user,
 		start_time=start_time,
 		end_time=end_time,
-		mind_wander_times=mind_wanders,
-		distraction_times=distractions,
+		return_to_work_times=returns_to_work,
 		productivity=productivity,
 		focus=focus,
-		task_importance=task_importance,
 		satisfaction=satisfaction,
-		mood=mood,
+		calm=calm,
 		task_urgency=task_urgency,
-		task_complexity=task_complexity,
 		task_familiarity=task_familiarity,
-		arousal=arousal,
-		fatigue=fatigue
+		arousal=arousal
 	)
 
 	return HttpResponse(status=200)

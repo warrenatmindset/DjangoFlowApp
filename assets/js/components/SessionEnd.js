@@ -1,18 +1,39 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import SevenPointScale from './partials/SevenPointScale';
-import SevenPointScaleHeader from './partials/SevenPointScaleHeader';
+import TenPointScale from './partials/TenPointScale';
+import ClickableGraph from './partials/ClickableGraph';
 
 
 const style = {
-	submit: {
+	header_text_container: {
+		textAlign: 'center',
+		fontWeight: 'bold'
+	}, 
+	inputs_container: {
+		border: '1px solid black'
+	},
+	productivity_scale_container: {
+		textAlign: 'center',
+		margin: '10px 0 20px 0',
+		borderBottom: '1px dotted black'
+	},
+	graphs_container: {
+		marginBottom: '10px',
+		textAlign: 'center'
+	},
+	submit_button: {
 		float: 'right',
 		backgroundColor: 'rgb(116, 196, 173)',
-		margin: '10px 0px',
-		padding: '10px 15px',
-		cursor: 'pointer',
-		borderRadius: '50px'
+		width: '200px',
+		height: '50px',
+		lineHeight: '50px',
+		margin: '30px 0px',
+		borderRadius: '50px',
+		textAlign: 'center',
+		textTransform: 'uppercase',
+		fontWeight: '500',
+		cursor: 'pointer'
 	}
 };
 
@@ -26,47 +47,57 @@ export default class SessionEnd extends Component {
 
 		this.state = {
 			productivity: false,
-			focus: false, 
-			task_importance: false, 
+			focus: false,
+			arousal: false,  
 			satisfaction: false, 
-			mood: false, 
+			calm: false, 
 			task_urgency: false, 
-			task_complexity: false, 
-			task_familiarity: false, 
-			arousal: false, 
-			fatigue: false
+			task_familiarity: false 
 		};
 
 		this._submitSession = this._submitSession.bind(this);
 		this._setProductivity = this._setProductivity.bind(this);
 		this._setFocus = this._setFocus.bind(this);
-		this._setTaskImportance = this._setTaskImportance.bind(this);
-		this._setSatisfaction = this._setSatisfaction.bind(this);
-		this._setMood = this._setMood.bind(this);
-		this._setTaskUrgency = this._setTaskUrgency.bind(this);
-		this._setTaskComplexity = this._setTaskComplexity.bind(this);
-		this._setTaskFamiliarity = this._setTaskFamiliarity.bind(this);
 		this._setArousal = this._setArousal.bind(this);
-		this._setFatigue = this._setFatigue.bind(this);
+		this._setSatisfaction = this._setSatisfaction.bind(this);
+		this._setCalm = this._setCalm.bind(this);
+		this._setTaskUrgency = this._setTaskUrgency.bind(this);
+		this._setTaskFamiliarity = this._setTaskFamiliarity.bind(this);
 	}
 
 	render(){
 		return (
 			<div>
-				<p>Congratulations on finishing a work session!</p>
-				<p>Please fill the following form & submit:</p>
-				<SevenPointScaleHeader />
-				<SevenPointScale field='productivity' setValue={this._setProductivity} />
-				<SevenPointScale field='focus' lowValue='shallow' highValue='deep' setValue={this._setFocus} />
-				<SevenPointScale field='task_importance' setValue={this._setTaskImportance} />
-				<SevenPointScale field='satisfaction' setValue={this._setSatisfaction} />
-				<SevenPointScale field='mood' lowValue='stressed' highValue='calm' setValue={this._setMood} />
-				<SevenPointScale field='task_urgency' setValue={this._setTaskUrgency} />
-				<SevenPointScale field='task_complexity' lowValue='simple' highValue='complex' setValue={this._setTaskComplexity} />
-				<SevenPointScale field='task_familiarity' setValue={this._setTaskFamiliarity} />
-				<SevenPointScale field='arousal' setValue={this._setArousal} />
-				<SevenPointScale field='fatigue_since_start' lowValue='lower' midValue='same' highValue='higher' setValue={this._setFatigue} />
-				<div style={style.submit} onClick={this._submitSession}>Submit</div>
+				<header style={style.header_text_container}>
+					<p>Congratulations on finishing a work session!</p>
+					<p>Please fill the following form & submit:</p>
+				</header>
+				<section style={style.inputs_container}>
+					<section style={style.productivity_scale_container}>
+						<TenPointScale field='productivity' setValue={this._setProductivity} />
+					</section>
+					<section style={style.graphs_container}>
+						<ClickableGraph 
+							title={"Cognitive State"}
+							firstAxis={['WIDE FOCUS', 'NARROW FOCUS']}
+							secondAxis={['TIRED', 'AROUSED']} 
+							setFirstVal={this._setFocus}
+							setSecondVal={this._setArousal}/>
+						<ClickableGraph 
+							title={"Task"}
+							firstAxis={['NONURGENT', 'URGENT']}
+							secondAxis={['UNFAMILIAR', 'FAMILIAR']} 
+							setFirstVal={this._setTaskUrgency}
+							setSecondVal={this._setTaskFamiliarity}/>
+						<ClickableGraph 
+							title={"Mood"}
+							firstAxis={['STRESSED', 'CALM']}
+							secondAxis={['FRUSTRATED', 'SATISFIED']} 
+							setFirstVal={this._setCalm}
+							setSecondVal={this._setSatisfaction}/>
+					</section>
+				</section>
+				<div style={style.submit_button} onClick={this._submitSession}>Submit</div>
 			</div>
 		);
 	}
@@ -96,29 +127,20 @@ export default class SessionEnd extends Component {
 		this.props.setSessionData('focus', value);
 	}
 
-	_setTaskImportance(value) {
-		this.setState({task_importance: true});
-		this.props.setSessionData('task_importance', value);
-	}
 
 	_setSatisfaction(value) {
 		this.setState({satisfaction: true});
 		this.props.setSessionData('satisfaction', value);
 	}
 
-	_setMood(value) {
-		this.setState({mood: true});
-		this.props.setSessionData('mood', value);
+	_setCalm(value) {
+		this.setState({calm: true});
+		this.props.setSessionData('calm', value);
 	}
 
 	_setTaskUrgency(value) {
 		this.setState({task_urgency: true});
 		this.props.setSessionData('task_urgency', value);
-	}
-
-	_setTaskComplexity(value) {
-		this.setState({task_complexity: true});
-		this.props.setSessionData('task_complexity', value);
 	}
 
 	_setTaskFamiliarity(value) {
@@ -129,10 +151,5 @@ export default class SessionEnd extends Component {
 	_setArousal(value) {
 		this.setState({arousal: true});
 		this.props.setSessionData('arousal', value);
-	}
-
-	_setFatigue(value) {
-		this.setState({fatigue: true});
-		this.props.setSessionData('fatigue', value);
 	}
 }

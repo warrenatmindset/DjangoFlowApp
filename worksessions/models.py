@@ -8,6 +8,7 @@ class WorkSession(models.Model):
 	end_time = models.BigIntegerField()
 
 	return_to_work_times = ArrayField(base_field=models.BigIntegerField())
+	todos = ArrayField(base_field=ArrayField(base_field=models.CharField(max_length=20)))
 
 	productivity = models.SmallIntegerField()
 	focus = models.SmallIntegerField()

@@ -19,7 +19,6 @@ def session(request):
 def save_session_data(request):
 	start_time = request.POST['start_time']
 	end_time = request.POST['end_time']
-	returns_to_work = request.POST.getlist('returns_to_work[]')
 	productivity = request.POST['productivity']
 	focus = request.POST['focus']
 	satisfaction = request.POST['satisfaction']
@@ -28,11 +27,18 @@ def save_session_data(request):
 	task_familiarity = request.POST['task_familiarity']
 	arousal = request.POST['arousal']
 
+	returns_to_work = request.POST.getlist('returns_to_work[]')
+	todos = []
+	for item in request.POST.items():
+		if 'todos' in item[0]:
+			todos.append(request.POST.getlist(item[0]))
+
 	WorkSession.objects.create(
 		user=request.user,
 		start_time=start_time,
 		end_time=end_time,
 		return_to_work_times=returns_to_work,
+		todos=todos,
 		productivity=productivity,
 		focus=focus,
 		satisfaction=satisfaction,

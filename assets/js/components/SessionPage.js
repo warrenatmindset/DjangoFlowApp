@@ -8,6 +8,47 @@ const style = {
 		marginTop: '20vh',
 		textAlign: 'center'
 	},
+	todo_container: {
+		height: '250px',
+		padding: '10px',
+		display: 'inline-block',
+		border: '1px solid rgb(56, 58, 59)',
+		borderRight: '1px dotted rgb(56, 58, 59)',
+		verticalAlign: 'top',
+		textAlign: 'left'
+	},
+	todo_header: {
+		fontSize: '160%',
+		cursor: 'default',
+		userSelect: 'none'
+	},
+	todo_list: {
+		height: '150px',
+		padding: '0 20px',
+		overflow: 'scroll',
+		userSelect: 'none'
+	},
+	incomplete_todo: {
+		display: 'inline-block',
+		width: '150px',
+		cursor: 'default',
+		userSelect: 'none'
+	},
+	complete_todo: {
+		display: 'inline-block',
+		width: '150px',
+		textDecoration: 'line-through',
+		cursor: 'default',
+		userSelect: 'none'
+	},
+	control_container: {
+		height: '250px',
+		padding: '10px',
+		display: 'inline-block',
+		border: '1px solid rgb(56, 58, 59)',
+		borderLeft: 'none',
+		verticalAlign: 'top'
+	},
 	timer: {
 		fontSize: '64px',
 		textAlign: 'center',
@@ -23,7 +64,7 @@ export default class SessionPage extends Component {
 	constructor(props){
 		super(props);
 
-		this.SESSION_LENGTH = 25 * 60; // in seconds
+		this.SESSION_LENGTH = 1; // in seconds
 
 		this.state = {
 			time_remaining: this.SESSION_LENGTH, 
@@ -38,13 +79,37 @@ export default class SessionPage extends Component {
 	render(){
 		return (
 			<div style={style.interfaceContainer}>
-				<div className={this._beginButtonClassName()} onClick={() => { this._beginSession(); }}>Begin</div>
-				<div className={this._pauseAndResetButtonClassNames()} onClick={() => { this._pauseOrResumeSession(); }}>{this._pauseOrResumeString()}</div>
-				<div className={this._pauseAndResetButtonClassNames()} onClick={() => { this._resetSession(); }}>Reset</div>
-				<div style={style.timer} className='session-timer'>{this._timerString()}</div>
-				<div className='session-button' onClick={ () => { this._recordReturnToWork() }}>Return To Work</div>
+				<section style={style.todo_container}>
+					<header style={style.todo_header}>Session To-Dos:</header>
+					<ul style={style.todo_list}>
+						{this._toDos()}
+					</ul>
+				</section>
+				<section style={style.control_container}>
+					<div className={this._beginButtonClassName()} onClick={() => { this._beginSession(); }}>Begin</div>
+					<div className={this._pauseAndResetButtonClassNames()} onClick={() => { this._pauseOrResumeSession(); }}>{this._pauseOrResumeString()}</div>
+					<div className={this._pauseAndResetButtonClassNames()} onClick={() => { this._resetSession(); }}>Reset</div>
+					<div style={style.timer} className='session-timer'>{this._timerString()}</div>
+					<div className='session-button' onClick={ () => { this._recordReturnToWork() }}>Return To Work</div>
+				</section>
 			</div>
 		);
+	}
+
+	_toDos(){
+		let todos = [];
+
+		for(let todo in this.props.todos){
+			let list_element;
+			if (!this.props.todos[todo][1]){
+				list_element = <li style={style.incomplete_todo} key={todo}>{this.props.todos[todo][0]}</li>;
+			} else {
+				list_element = <li style={style.complete_todo} key={todo}>{this.props.todos[todo][0]}</li>;
+			}
+			todos.push([list_element, <input type='checkbox' onClick={() => { this.props.toggleToDoCompletion(todo) }} />, <br />]);
+		}
+
+		return todos;
 	}
 
 	_beginSession(){

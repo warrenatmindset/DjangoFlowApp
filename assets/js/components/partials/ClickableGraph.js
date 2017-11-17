@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 const style = {
 	graph_container: {
 		display: 'inline-block',
-		width: 'fit-content'
+		width: 'fit-content',
+		userSelect: 'none'
 	},
 	title: {
 		textAlign: 'center',

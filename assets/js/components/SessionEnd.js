@@ -8,10 +8,12 @@ import ClickableGraph from './partials/ClickableGraph';
 const style = {
 	header_text_container: {
 		textAlign: 'center',
-		fontWeight: 'bold'
+		fontWeight: 'bold',
+		userSelect: 'none'
 	}, 
 	inputs_container: {
-		border: '1px solid black'
+		border: '1px solid black',
+		userSelect: 'none'
 	},
 	productivity_scale_container: {
 		textAlign: 'center',

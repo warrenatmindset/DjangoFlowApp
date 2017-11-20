@@ -31,6 +31,49 @@ html, body {
 	user-select: none;
 }
 
+.user_form {
+	width: fit-content;
+	margin: 0 auto;
+	padding: 10px 15px;
+	border: 1px solid rgb(56, 58, 59);
+	user-select: none;
+
+	label {
+		width: 150px;
+	}
+
+	button {
+		float: right;
+		background-color: rgb(116, 196, 173);
+		color: rgb(56, 58, 59);
+		padding: 5px 10px;
+		border: none;
+		border-radius: 50px;
+	}
+
+	button:active {
+		box-shadow: 0px 0px 1px black;
+	}
+
+	button:focus {
+		outline: none;
+	}
+
+	&:after {
+		content: ' ';	
+		display: table;
+		clear: both;
+	}
+}
+
+.login_form {
+	@extend .user_form;
+}
+
+.register_form {
+	@extend .user_form;
+}
+
 .logout-form {
 	display: inline-block;
 	float: right;
@@ -61,6 +104,23 @@ html, body {
 .header-button:hover {
 	color: black;
 	text-decoration: none;
+}
+
+.profile-info-container {
+	width: fit-content;
+	margin: 0 auto;
+	padding: 10px 15px;
+	border: 1px solid rgb(56, 58, 59);
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	}
+
+	#users_name {
+		font-style: italic;
+	}
 }
 
 .maa-form {

@@ -23,7 +23,7 @@ const style = {
 		userSelect: 'none'
 	},
 	todo_list: {
-		height: '150px',
+		height: '200px',
 		padding: '0 20px',
 		overflow: 'scroll',
 		userSelect: 'none'

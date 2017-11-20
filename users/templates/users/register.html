@@ -4,21 +4,30 @@
 {% include 'includes/header.html' %}
 {% include 'includes/flash_messages.html' %}
 
-<form action="{% url 'users:register' %}" method="post">
+<form action="{% url 'users:register' %}" method="post" class='register_form'>
 	{% csrf_token %}
+
+	<label>First Name</label>
+	<input type="text" name="first_name" />
+	<br />
+
+	<label>Last Name</label>
+	<input type="text" name="last_name" />
+	<br />
 
 	<label>Email</label>
 	<input type="text" name="email" id="register-email" />
-	</br>
+	<br />
 
 	<label>Password</label>
 	<input type="password" name="password" id="register-password" /> 
-	</br>
+	<br />
 
 	<label>Confirm Password</label>
-	<input type="password" name="confirm-password" id="register-confirm-password" />
-	</br>
+	<input type="password" name="confirm_password" id="register-confirm-password" />
+	<br />
 
+	<a href="{% url 'users:login' %}">Back</a>
 	<button type="submit">Register</button>
 </form>
 {% endblock %}

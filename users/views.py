@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+import numpy as np
 
 from .models import User
 
@@ -57,12 +58,16 @@ def post_logout_and_redirect(request):
 	return HttpResponseRedirect(reverse('users:login'))
 
 def post_registration_attempt_and_redirect(request):
+	first_name = request.POST['first_name']
+	last_name = request.POST['last_name']
 	email = request.POST['email']
 	password = request.POST['password']
-	confirm_password = request.POST['confirm-password']
+	confirm_password = request.POST['confirm_password']
 	error = False
 
-	if not email.strip() or not password.strip() or not confirm_password.strip():
+	fields = [first_name, last_name, email, password, confirm_password]
+	fields_empty = np.array([not field.strip() for field in fields])
+	if fields_empty.any():
 		messages.error(request, 'All fields must be filled. Please try again.')
 		error = True
 
@@ -82,7 +87,7 @@ def post_registration_attempt_and_redirect(request):
 		error = True
 
 	if not error: 
-		User.objects.create_user(email=email, password=password)
+		User.objects.create_user(first_name=first_name, last_name=last_name, email=email, password=password)
 		user = authenticate(request, username=email, password=password)
 		auth_login(request, user)
 		messages.success(request, '{} successfully registered!'.format(email))

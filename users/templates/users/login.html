@@ -4,7 +4,7 @@
 {% include 'includes/header.html' %}
 {% include 'includes/flash_messages.html' %}
 
-<form action="{% url  'users:login' %}" method="post">
+<form action="{% url  'users:login' %}" method="post" class='login_form'>
 	{% csrf_token %}
 
 	<label class='form-label'>Email</label>
@@ -16,8 +16,8 @@
 	</br>
 
 	<button type="submit">Login</button>
-</form>
 
-Not yet a user? 
-<a href="{% url 'users:register' %}">Register</a>
+	Not yet a user? 
+	<a href="{% url 'users:register' %}">Register</a>
+</form>
 {% endblock %}

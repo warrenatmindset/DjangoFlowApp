@@ -24,8 +24,7 @@ const style = {
 		color: 'rgb(56, 58, 59)',
 		fontSize: '24px',
 		padding: '15px 25px',
-		borderRadius: '50px',
-		userSelect: 'none'
+		borderRadius: '50px'
 	},
 	todo_container: {
 		display: 'inline-block',
@@ -38,27 +37,23 @@ const style = {
 	},
 	todo_header: {
 		fontSize: '160%',
-		cursor: 'default',
-		userSelect: 'none'
+		cursor: 'default'
 	},
 	todo_list: {
 		height: '150px',
 		padding: '0 20px',
-		overflow: 'scroll',
-		userSelect: 'none'
+		overflow: 'scroll'
 	},
 	todo: {
 		display: 'inline-block',
 		width: '150px',
-		cursor: 'default',
-		userSelect: 'none'
+		cursor: 'default'
 	},
 	remove_todo: {
 		display: 'inline-block',
 		width: '10px',
 		textAlign: 'center',
-		cursor: 'pointer',
-		userSelect: 'none'
+		cursor: 'pointer'
 	}
 };
 

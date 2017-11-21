@@ -7,7 +7,8 @@ const style = {
 		display: 'inline-block',
 		width: '150px',
 		textTransform: 'uppercase',
-		fontStyle: 'italic'
+		fontWeight: 'bold',
+		fontSize: '120%'
 	},
 	button: {
 		display: 'inline-block',
@@ -18,7 +19,8 @@ const style = {
 		display: 'inline-block',
 		width: '70px',
 		margin: '3px',
-		textAlign: 'center'
+		textAlign: 'center',
+		fontStyle: 'italic'
 	},
 	row: {
 		display: 'inline-block',
@@ -59,19 +61,6 @@ export default class TenPointScale extends Component {
 	render() {
 		return(
 			<div style={style.row}>
-				<div>
-					<span style={style.buffer}></span>
-					<span style={style.buttonHeader}>1</span>
-					<span style={style.buttonHeader}>2</span>
-					<span style={style.buttonHeader}>3</span>
-					<span style={style.buttonHeader}>4</span>
-					<span style={style.buttonHeader}>5</span>
-					<span style={style.buttonHeader}>6</span>
-					<span style={style.buttonHeader}>7</span>
-					<span style={style.buttonHeader}>8</span>
-					<span style={style.buttonHeader}>9</span>
-					<span style={style.buttonHeader}>10</span>
-				</div>
 				<div>
 					<span style={style.title}></span>
 					<span style={style.header}>{this.props.lowValue}</span>

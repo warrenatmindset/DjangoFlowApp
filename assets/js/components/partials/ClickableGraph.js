@@ -11,13 +11,13 @@ const style = {
 	title: {
 		textAlign: 'center',
 		fontSize: '120%',
-		fontWeight: 'bold'
+		fontWeight: 'bold',
+		textTransform: 'uppercase'
 	},
 	graph: {
 		display: 'inline-block',
 		verticalAlign: 'middle',
-		border: '1px solid black',
-		background: 'linear-gradient(to top right, lightgrey, white)'
+		border: '1px solid black'
 	},
 	dot: {
 		height: '1px',
@@ -35,12 +35,7 @@ const style = {
 		fontStyle: 'italic'
 	},
 	legend: {
-		textAlign: 'center',
-		fontSize: '80%'
-	},
-	hidden_legend: {
-		visibility: 'hidden',
-		fontSize: '80%'
+		textAlign: 'center'
 	}
 };
 
@@ -50,7 +45,8 @@ export default class ClickableGraph extends Component {
 		firstAxis: PropTypes.array.isRequired,
 		secondAxis: PropTypes.array.isRequired,
 		setFirstVal: PropTypes.func.isRequired,
-		setSecondVal: PropTypes.func.isRequired
+		setSecondVal: PropTypes.func.isRequired,
+		gradient: PropTypes.string.isRequired
 	};
 
 	constructor(props){
@@ -67,6 +63,7 @@ export default class ClickableGraph extends Component {
 
 	componentDidMount(){ 
 		this.canvas = document.getElementById(this.id);
+		this.canvas.style.background = this.props.gradient;
 		this.ctx = this.canvas.getContext('2d');
 		this.canvas_pos = this.canvas.getBoundingClientRect();
 		this._drawCross(); 
@@ -82,6 +79,7 @@ export default class ClickableGraph extends Component {
 		return (
 			<div style={style.graph_container}>
 				<header style={style.title}>{this.props.title}</header>
+				<section>{this._label()}</section>
 				<div style={style.second_axis}>{this.props.secondAxis[1]}</div>
 				<div>
 					<div style={style.first_axis}>{this.props.firstAxis[0]}</div>
@@ -90,7 +88,6 @@ export default class ClickableGraph extends Component {
 					<div style={style.first_axis}>{this.props.firstAxis[1]}</div>
 				</div>
 				<div style={style.second_axis}>{this.props.secondAxis[0]}</div>
-				<section>{this._label()}</section>
 			</div>
 		);
 	}
@@ -126,33 +123,35 @@ export default class ClickableGraph extends Component {
 	}
 
 	_label(){
+		let xLabel, yLabel, xVal, yVal;
+
 		if(this.state.coordinates.length == 0){
-			return [<div style={style.hidden_legend} key='1'>filler</div>, <div style={style.hidden_legend} key='2'>filler</div>];
+			xLabel = this.props.firstAxis[1];
+			yLabel = this.props.secondAxis[1];
+			xVal = ' 0%';
+			yVal = ' 0%';
 		} else {
 			let x = this.state.coordinates[0],
-				y = this.state.coordinates[1],
-				xLabel, yLabel, xVal, yVal;
+				y = this.state.coordinates[1];
 
 			if(x < 100){
 				xLabel = this.props.firstAxis[0];
-				xVal = Math.round(100 - x);
+				xVal = ` ${Math.round(100 - x)}%`;
 			} else {
 				xLabel = this.props.firstAxis[1];
-				xVal = Math.round(x - 100);
+				xVal = ` ${Math.round(x - 100)}%`;
 			}
 
 			if(y < 100){
 				yLabel = this.props.secondAxis[1];
-				yVal = Math.round(100 - y);
+				yVal = ` ${Math.round(100 - y)}%`;
 			} else {
 				yLabel = this.props.secondAxis[0];
-				yVal = Math.round(y - 100);
+				yVal = ` ${Math.round(y - 100)}%`;
 			}
-
-			let xLegend = `${xLabel}: ${xVal}%`,
-				yLegend = `${yLabel}: ${yVal}%`
-
-			return [<div style={style.legend} key='1'>{xLegend}</div>, <div style={style.legend} key='2'>{yLegend}</div>];
 		}
+
+		return [<div style={style.legend} key='1'>{xLabel}:<strong>{xVal}</strong></div>, 
+				<div style={style.legend} key='2'>{yLabel}:<strong>{yVal}</strong></div>];
 	}
 }

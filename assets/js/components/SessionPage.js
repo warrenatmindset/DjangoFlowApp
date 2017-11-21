@@ -8,6 +8,16 @@ const style = {
 		marginTop: '20vh',
 		textAlign: 'center'
 	},
+	pause_button: {
+		backgroundColor: 'rgb(116, 196, 173)'
+	},
+	reset_button: {
+		backgroundColor: 'rgb(231, 116, 96)'
+	},
+	work_button: {
+		fontWeight: 'bold',
+		textTransform: 'uppercase'
+	},
 	todo_container: {
 		height: '250px',
 		padding: '10px',
@@ -19,27 +29,23 @@ const style = {
 	},
 	todo_header: {
 		fontSize: '160%',
-		cursor: 'default',
-		userSelect: 'none'
+		cursor: 'default'
 	},
 	todo_list: {
 		height: '200px',
 		padding: '0 20px',
-		overflow: 'scroll',
-		userSelect: 'none'
+		overflow: 'scroll'
 	},
 	incomplete_todo: {
 		display: 'inline-block',
 		width: '150px',
-		cursor: 'default',
-		userSelect: 'none'
+		cursor: 'default'
 	},
 	complete_todo: {
 		display: 'inline-block',
 		width: '150px',
 		textDecoration: 'line-through',
-		cursor: 'default',
-		userSelect: 'none'
+		cursor: 'default'
 	},
 	control_container: {
 		height: '250px',
@@ -64,7 +70,7 @@ export default class SessionPage extends Component {
 	constructor(props){
 		super(props);
 
-		this.SESSION_LENGTH = 25 * 60; // in seconds
+		this.SESSION_LENGTH = 1	; // in seconds
 
 		this.state = {
 			time_remaining: this.SESSION_LENGTH, 
@@ -87,10 +93,10 @@ export default class SessionPage extends Component {
 				</section>
 				<section style={style.control_container}>
 					<div className={this._beginButtonClassName()} onClick={() => { this._beginSession(); }}>Begin</div>
-					<div className={this._pauseAndResetButtonClassNames()} onClick={() => { this._pauseOrResumeSession(); }}>{this._pauseOrResumeString()}</div>
-					<div className={this._pauseAndResetButtonClassNames()} onClick={() => { this._resetSession(); }}>Reset</div>
+					<div className={this._pauseAndResetButtonClassNames()} style={style.pause_button} onClick={() => { this._pauseOrResumeSession(); }}>{this._pauseOrResumeString()}</div>
+					<div className={this._pauseAndResetButtonClassNames()} style={style.reset_button} onClick={() => { this._resetSession(); }}>Reset</div>
 					<div style={style.timer} className='session-timer'>{this._timerString()}</div>
-					<div className='session-button' onClick={ () => { this._recordReturnToWork() }}>Return To Work</div>
+					<div className='session-button' style={style.work_button} onClick={ () => { this._recordReturnToWork() }}>Return To Work</div>
 				</section>
 			</div>
 		);

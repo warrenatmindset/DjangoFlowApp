@@ -7,13 +7,16 @@ import ClickableGraph from './partials/ClickableGraph';
 
 const style = {
 	header_text_container: {
-		textAlign: 'center',
-		fontWeight: 'bold',
-		userSelect: 'none'
+		marginTop: '20px',
+		fontWeight: 'bold'
 	}, 
+	congrats_text: {
+		fontSize: '120%',
+		color: 'rgb(116, 196, 173)',
+		textTransform: 'uppercase'
+	},
 	inputs_container: {
-		border: '1px solid black',
-		userSelect: 'none'
+		border: '1px solid black'
 	},
 	productivity_scale_container: {
 		textAlign: 'center',
@@ -71,8 +74,12 @@ export default class SessionEnd extends Component {
 		return (
 			<div>
 				<header style={style.header_text_container}>
-					<p>Congratulations on finishing a work session!</p>
-					<p>Please fill the following form & submit:</p>
+					<p style={style.congrats_text}>Congratulations on finishing a work session!</p>
+					<ol>
+						<li>Enter 1-10 on the productivity scale</li>
+						<li>Click on each of the following graphs to indicate cognitive state, task description, & mood.</li>
+						<li>After filling the form please submit!</li>
+					</ol>
 				</header>
 				<section style={style.inputs_container}>
 					<section style={style.productivity_scale_container}>
@@ -80,23 +87,26 @@ export default class SessionEnd extends Component {
 					</section>
 					<section style={style.graphs_container}>
 						<ClickableGraph 
-							title={"Cognitive State"}
-							firstAxis={['WIDE FOCUS', 'NARROW FOCUS']}
-							secondAxis={['TIRED', 'AROUSED']} 
+							title={'COGNITIVE STATE'}
+							firstAxis={['wide focus', 'narrow focus']}
+							secondAxis={['tired', 'aroused']} 
 							setFirstVal={this._setFocus}
-							setSecondVal={this._setArousal}/>
+							setSecondVal={this._setArousal}
+							gradient={'linear-gradient(to top right, rgb(96, 46, 46), rgb(0, 255, 255))'} />
 						<ClickableGraph 
-							title={"Task"}
-							firstAxis={['NONURGENT', 'URGENT']}
-							secondAxis={['UNFAMILIAR', 'FAMILIAR']} 
+							title={'TASK'}
+							firstAxis={['urgent', 'nonurgent']}
+							secondAxis={['unfamiliar', 'familiar']} 
 							setFirstVal={this._setTaskUrgency}
-							setSecondVal={this._setTaskFamiliarity}/>
+							setSecondVal={this._setTaskFamiliarity} 
+							gradient={'linear-gradient(to top right, rgb(128, 0, 0), rgb(255, 180, 0))'} />
 						<ClickableGraph 
-							title={"Mood"}
-							firstAxis={['STRESSED', 'CALM']}
-							secondAxis={['FRUSTRATED', 'SATISFIED']} 
+							title={'MOOD'}
+							firstAxis={['stressed', 'calm']}
+							secondAxis={['frustrated', 'satisfied']} 
 							setFirstVal={this._setCalm}
-							setSecondVal={this._setSatisfaction}/>
+							setSecondVal={this._setSatisfaction}
+							gradient={'linear-gradient(to top right, rgb(255, 0, 0), rgb(0, 255, 140))'} />
 					</section>
 				</section>
 				<div style={style.submit_button} onClick={this._submitSession}>Submit</div>

@@ -63,41 +63,41 @@ def post_registration_attempt_and_redirect(request):
 	email = request.POST['email']
 	password = request.POST['password']
 	confirm_password = request.POST['confirm_password']
-	resgistration_error = False
+	registration_error = False
 
 	fields = [first_name, last_name, email, password, confirm_password]
 	fields_empty = np.array([not field.strip() for field in fields])
 	if fields_empty.any():
 		messages.error(request, 'All fields must be filled. Please try again.')
-		resgistration_error = True
+		registration_error = True
 
 	try: 
 		validate_email(email)
 	except ValidationError:
 		messages.error(request, 'Email invalid. Please use a valid email.')
-		resgistration_error = True
+		registration_error = True
 
 	user_exists = User.objects.filter(email=email).count()
 	if user_exists:
 		messages.error(request, 'Email already registered. Please use another email.')
-		resgistration_error = True
+		registration_error = True
 
 	user_exists = User.objects.filter(first_name=first_name, last_name=last_name).count()
 	if user_exists:
 		messages.error(request, 'Name already registered. Please use another name.')
-		resgistration_error = True
+		registration_error = True
 
 	if password != confirm_password:
 		messages.error(request, 'Passwords do not match. Please try again.')
-		resgistration_error = True
+		registration_error = True
 
-	if not resgistration_error: 
+	if not registration_error: 
 		User.objects.create_user(first_name=first_name, last_name=last_name, email=email, password=password)
 		user = authenticate(request, username=email, password=password)
 		auth_login(request, user)
 		messages.success(request, '{} successfully registered!'.format(email))
 
-	if error: 
+	if registration_error: 
 		return HttpResponseRedirect(reverse('users:register'))
 	else:
 		return HttpResponseRedirect('/profile/')

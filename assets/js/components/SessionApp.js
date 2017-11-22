@@ -23,7 +23,7 @@ export default class SessionApp extends Component {
     let csrftoken = Cookies.get('csrftoken');
     $.ajaxSetup({
         beforeSend: function(xhr, settings) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            xhr.setRequestHeader("X-CSRF-Token", csrftoken);
         }
     });
   }

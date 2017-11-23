@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.middleware.csrf import get_token as get_csrf_token
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import WorkSession
 
@@ -10,6 +10,7 @@ from .models import WorkSession
 def home(request):
 	return render(request, 'worksessions/home.html')
 
+@csrf_exempt
 @login_required
 def session(request):
 	if request.method == 'POST':
@@ -18,9 +19,6 @@ def session(request):
 		return HttpResponse(status=404)
 
 def save_session_data(request):
-	csrf_token = get_csrf_token(request)
-	print('csrf token: {}'.format(csrf_token))
-	
 	start_time = request.POST['start_time']
 	end_time = request.POST['end_time']
 	productivity = request.POST['productivity']

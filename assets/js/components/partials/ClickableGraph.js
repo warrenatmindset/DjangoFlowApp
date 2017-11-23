@@ -106,8 +106,9 @@ export default class ClickableGraph extends Component {
 	}
 
 	_handleClick(e) {
-		let x = e.pageX - this.canvas_pos.x, 
-			y = e.pageY - this.canvas_pos.y;
+		let x = e.pageX - this.canvas_pos.left, 
+			y = e.pageY - this.canvas_pos.top;
+		console.log(this.canvas_pos, y);
 		this.ctx.clearRect(0, 0, 200, 200);
 		this._drawCross();
 		this.ctx.fillRect(x - 2, y - 2, 4, 4);

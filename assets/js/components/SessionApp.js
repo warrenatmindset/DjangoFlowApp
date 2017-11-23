@@ -1,5 +1,4 @@
 import React, { Component } from 'react'; 
-import * as Cookies from 'js-cookie';
 
 
 export default class SessionApp extends Component {
@@ -17,15 +16,6 @@ export default class SessionApp extends Component {
     this._addToDo = this._addToDo.bind(this);
     this._removeToDo = this._removeToDo.bind(this);
     this._toggleToDoCompletion = this._toggleToDoCompletion.bind(this);
-  }
-
-  componentDidMount(){
-    let csrftoken = Cookies.get('csrftoken');
-    $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-            xhr.setRequestHeader("X-CSRF-Token", csrftoken);
-        }
-    });
   }
 
   render() {

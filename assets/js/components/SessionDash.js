@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import PropTypes from 'prop-types';
 import './style/todoInput.css';
 
 
@@ -58,6 +58,10 @@ const style = {
 };
 
 export default class SessionDash extends Component {
+	static contextTypes = {
+		router: PropTypes.object.isRequired
+	};
+
 	constructor(props){
 		super(props);
 
@@ -65,6 +69,7 @@ export default class SessionDash extends Component {
 			input: ''
 		};
 
+		this._startSession = this._startSession.bind(this);
 		this._handleTextChange = this._handleTextChange.bind(this);
 		this._addToDo = this._addToDo.bind(this);
 	}
@@ -90,10 +95,15 @@ export default class SessionDash extends Component {
 					</ul>
 				</section>
 				<section style={style.button_container}>
-					<Link style={style.button} to='/session'>Start session</Link>
+					<div style={style.button} onClick={this._startSession}>Start session</div>
 				</section>
 			</div>
 		);
+	}
+
+	_startSession(){
+		this.props.beginEEGRecording();
+		this.context.router.push('/session');
 	}
 
 	_toDos(){

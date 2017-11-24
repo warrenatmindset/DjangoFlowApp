@@ -5,17 +5,25 @@ export default class SessionApp extends Component {
   constructor(props){
     super(props);
 
+    this.SOCKET_PORT = 5000;
+
     this.state = {
       todos: []
     };
-
-    this.flash_message = '';
 
     this._setSessionData = this._setSessionData.bind(this);
     this._submitSessionData = this._submitSessionData.bind(this);
     this._addToDo = this._addToDo.bind(this);
     this._removeToDo = this._removeToDo.bind(this);
     this._toggleToDoCompletion = this._toggleToDoCompletion.bind(this);
+  }
+
+  componentDidMount(){
+    this._initSocket();
+  }
+
+  componentWillUnmount(){
+    this.socket.close();
   }
 
   render() {
@@ -27,10 +35,32 @@ export default class SessionApp extends Component {
           todos: this.state.todos,
           addToDo: this._addToDo,
           removeToDo: this._removeToDo,
-          toggleToDoCompletion: this._toggleToDoCompletion
+          toggleToDoCompletion: this._toggleToDoCompletion,
+          beginEEGRecording: this._beginEEGRecording
         })}
       </div>
     );
+  }
+
+  _initSocket(){
+    this.socket = new WebSocket(`ws://localhost:${this.SOCKET_PORT}`);
+    this.socket.onopen = (event) => { console.log(`socket @ port ${this.SOCKET_PORT} open`); };
+    this.socket.onmessage = (event) => { this._receiveSocketMessage(event.data); };
+  }
+
+  _receiveSocketMessage(data){
+    switch(data){
+      case 'eeg-recording':
+        alert('eeg recording');
+        break;
+      case 'error':
+        alert('error: eeg not recording');
+        break;
+    }
+  }
+
+  _beginEEGRecording(){
+    this.socket.send('begin-eeg-recording');
   }
 
   _addToDo(todo){

@@ -43,9 +43,13 @@ export default class SessionApp extends Component {
   }
 
   _initSocket(){
-    this.socket = new WebSocket(`ws://localhost:${this.SOCKET_PORT}`);
-    this.socket.onopen = (event) => { console.log(`socket @ port ${this.SOCKET_PORT} open`); };
-    this.socket.onmessage = (event) => { this._receiveSocketMessage(event.data); };
+    try {
+      this.socket = new WebSocket(`ws://localhost:${this.SOCKET_PORT}`);
+      this.socket.onopen = (event) => { console.log(`socket @ port ${this.SOCKET_PORT} open`); };
+      this.socket.onmessage = (event) => { this._receiveSocketMessage(event.data); };
+    } catch(err) {
+      alert('failed to open WebSocket connection')
+    }
   }
 
   _receiveSocketMessage(data){
@@ -60,7 +64,11 @@ export default class SessionApp extends Component {
   }
 
   _beginEEGRecording(){
-    this.socket.send('begin-eeg-recording');
+    try { 
+      this.socket.send('begin-eeg-recording'); 
+    } catch(err) {
+      alert('failed to send begin EEG recording through WebSocket');
+    }
   }
 
   _addToDo(todo){
